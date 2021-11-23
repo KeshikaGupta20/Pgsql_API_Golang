@@ -15,11 +15,11 @@ func GetPerson(c *fiber.Ctx) error {
 
 	db := database.DB
 
-	var person []models.Person = make([]models.Person, 0)
-	var books []models.Book
+	var person []models.Person
+	//var books []models.Book
 
-	db.First(&person, ID)
-	db.Model(&person).Related(&books)
+	db.Find(&person, ID)
+	//db.Model(&person).Related(&books)
 
 	//person.Books = books
 
@@ -36,16 +36,14 @@ func GetPeople(c *fiber.Ctx) error {
 
 	db := database.DB
 
-	var people []models.Person = make([]models.Person, 0)
+	var people []models.Person
 
 	db.Find(&people)
 
-	return c.Status(fiber.StatusOK).JSON(fiber.Map{
-
-		"success": true,
-		"data": fiber.Map{
-			"Persons": "people",
-		},
+	return c.JSON(fiber.Map{
+		"status":  "success",
+		"message": "All products",
+		"data":    people,
 	})
 
 }
@@ -54,19 +52,16 @@ func CreatePerson(c *fiber.Ctx) error {
 
 	db := database.DB
 
-	p := new(models.Person)
+	per := new(models.Person)
 
-	c.BodyParser(p)
+	c.BodyParser(per)
 
-	createdPerson := db.Create(&p)
+	db.Create(&per)
 
-	err := createdPerson.Error
-	if err != nil {
-		fmt.Println(err)
-	}
-	return c.Status(fiber.StatusOK).JSON(fiber.Map{
-
-		"Message": "person added sucessfully",
+	return c.JSON(fiber.Map{
+		"status":  "success",
+		"message": "Created product",
+		"data":    per,
 	})
 
 }
@@ -77,7 +72,7 @@ func DeletePerson(c *fiber.Ctx) error {
 
 	db := database.DB
 
-	var person []models.Person = make([]models.Person, 0)
+	var person []models.Person
 
 	db.First(&person, ID)
 

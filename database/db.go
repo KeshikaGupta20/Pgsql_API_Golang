@@ -24,12 +24,9 @@ func ConnectDB() {
 		os.Getenv("DB_NAME")))
 
 	if err != nil {
-		panic(err)
-	} else {
-		fmt.Println("Connected to database successfully")
+		panic("connection failed")
 	}
-
-	defer DB.Close()
+	fmt.Println("Connected to database successfully")
 
 	DB.AutoMigrate(&models.Person{})
 	DB.AutoMigrate(&models.Book{})

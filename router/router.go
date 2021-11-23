@@ -11,16 +11,16 @@ func RegisterRoutes(app fiber.Router) {
 
 	app.Post("/createbook", c.CreateBook)
 
-	app.Delete("/deleteperson/{id}", c.DeletePerson)
+	app.Delete("/deleteperson/:{id}", c.DeletePerson)
 
-	app.Delete("/deletebook/{id}", c.DeleteBook)
+	app.Delete("/deletebook/:{id}", c.DeleteBook)
 
 	app.Get("/getbooks", c.GetBooks)
 
-	app.Get("/getbook/{id}", c.GetBook)
+	app.Get("/getbook/:{id}", c.GetBook)
 
 	app.Get("/getpeople", c.GetPeople)
 
-	app.Get("/getperson/{id}",c. GetPerson)
+	app.Get("/getperson/:{id}",c. GetPerson)
 
 }

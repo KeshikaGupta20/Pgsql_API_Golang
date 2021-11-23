@@ -7,7 +7,7 @@ import (
 	"github.com/KeshikaGupta20/Pgsql_API_Golang/router"
 	"github.com/joho/godotenv"
 
-	"github.com/gofiber/fiber"
+	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/logger"
 
 	_ "github.com/jinzhu/gorm/dialects/postgres"
